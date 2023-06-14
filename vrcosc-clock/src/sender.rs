@@ -15,19 +15,23 @@ use time::OffsetDateTime;
 /// Behaves as UserData object in Lua.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct LuaDateTime {
+    year: u16,
     hour: u8,
     minute: u8,
     second: u8,
     month: u8,
+    weekday: u8,
     day: u8,
 }
 
 impl LuaUserData for LuaDateTime {
     fn add_fields<'lua, F: LuaUserDataFields<'lua, Self>>(fields: &mut F) {
+        fields.add_field_method_get("year", |_, this| Ok(this.year));
         fields.add_field_method_get("hour", |_, this| Ok(this.hour));
         fields.add_field_method_get("minute", |_, this| Ok(this.minute));
         fields.add_field_method_get("second", |_, this| Ok(this.second));
         fields.add_field_method_get("month", |_, this| Ok(this.month));
+        fields.add_field_method_get("weekday", |_, this| Ok(this.weekday));
         fields.add_field_method_get("day", |_, this| Ok(this.day));
     }
 }
@@ -35,10 +39,12 @@ impl LuaUserData for LuaDateTime {
 impl From<OffsetDateTime> for LuaDateTime {
     fn from(dt: OffsetDateTime) -> LuaDateTime {
         LuaDateTime {
+            year: dt.year() as u16,
             hour: dt.hour(),
             minute: dt.minute(),
             second: dt.second(),
             month: dt.month() as u8,
+            weekday: dt.weekday() as u8,
             day: dt.day(),
         }
     }
