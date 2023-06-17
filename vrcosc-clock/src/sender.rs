@@ -19,6 +19,7 @@ pub struct LuaDateTime {
     hour: u8,
     minute: u8,
     second: u8,
+    millisecond: u16,
     month: u8,
     weekday: u8,
     day: u8,
@@ -30,6 +31,7 @@ impl LuaUserData for LuaDateTime {
         fields.add_field_method_get("hour", |_, this| Ok(this.hour));
         fields.add_field_method_get("minute", |_, this| Ok(this.minute));
         fields.add_field_method_get("second", |_, this| Ok(this.second));
+        fields.add_field_method_get("millisecond", |_, this| Ok(this.millisecond));
         fields.add_field_method_get("month", |_, this| Ok(this.month));
         fields.add_field_method_get("weekday", |_, this| Ok(this.weekday));
         fields.add_field_method_get("day", |_, this| Ok(this.day));
@@ -43,6 +45,7 @@ impl From<OffsetDateTime> for LuaDateTime {
             hour: dt.hour(),
             minute: dt.minute(),
             second: dt.second(),
+            millisecond: dt.millisecond(),
             month: dt.month() as u8,
             weekday: dt.weekday() as u8,
             day: dt.day(),

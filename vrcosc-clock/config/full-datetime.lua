@@ -48,76 +48,86 @@ local function convert_second(datetime)
     return datetime.second / 60.0
 end
 
+local function convert_second_fixed(datetime)
+    local sec_millisec = datetime.millisecond / 1000;
+    return (datetime.second + sec_millisec) / 60.0
+end
+
 local function convert_weekday(datetime)
     return datetime.weekday / 6.0;
 end
 
 return {
     year = {
-        address = "/clock/year",
+        address = "/avatar/parameters/year",
         value_type = "float",
         value_function = convert_year,
     },
     year_fixed = {
-        address = "/clock/year_fixed",
+        address = "/avatar/parameters/year_fixed",
         value_type = "float",
         value_function = convert_year_fixed,
     },
 
     month = {
-        address = "/clock/month",
+        address = "/avatar/parameters/month",
         value_type = "float",
         value_function = convert_month,
     },
     month_fixed = {
-        address = "/clock/month_fixed",
+        address = "/avatar/parameters/month_fixed",
         value_type = "float",
         value_function = convert_month_fixed,
     },
 
     day = {
-        address = "/clock/day",
+        address = "/avatar/parameters/day",
         value_type = "float",
         value_function = convert_day,
     },
     day_fixed = {
-        address = "/clock/day_fixed",
+        address = "/avatar/parameters/day_fixed",
         value_type = "float",
         value_function = convert_day_fixed,
     },
 
     weekday = {
-        address = "/clock/weekday",
+        address = "/avatar/parameters/weekday",
         value_type = "float",
         value_function = convert_weekday,
     },
 
 
     hour = {
-        address = "/clock/hour",
+        address = "/avatar/parameters/hour",
         value_type = "float",
         value_function = convert_hour,
     },
     hour_fixed = {
-        address = "/clock/hour_fixed",
+        address = "/avatar/parameters/hour_fixed",
         value_type = "float",
         value_function = convert_hour_fixed,
     },
 
     min = {
-        address = "/clock/min",
+        address = "/avatar/parameters/min",
         value_type = "float",
         value_function = convert_min,
     },
     min_fixed = {
-        address = "/clock/min_fixed",
+        address = "/avatar/parameters/min_fixed",
         value_type = "float",
         value_function = convert_min_fixed,
     },
 
     second = {
-        address = "/clock/second",
+        address = "/avatar/parameters/second",
         value_type = "float",
         value_function = convert_second,
     },
+    second_fixed = {
+        address = "/avatar/parameters/second_fixed",
+        value_type = "float",
+        value_function = convert_second_fixed,
+    }
 }
