@@ -13,7 +13,7 @@ end
 
 local function convert_month_fixed(datetime)
     local month_day = datetime.day / 30.0;
-    return ((datetime.month + month_day) -1) / 30.0;
+    return ((datetime.month + month_day) -1) / 12.0;
 end
 
 local function convert_day(datetime)
@@ -22,7 +22,7 @@ end
 
 local function convert_day_fixed(datetime)
     local day_hour = datetime.hour / 23.0;
-    return ((datetime.day + day_hour) -1) / 30.0;
+    return ((datetime.day + day_hour) -1) / 31.0;
 end
 
 local function convert_hour(datetime)
@@ -32,7 +32,7 @@ end
 local function convert_hour_fixed(datetime)
     local hour_sec = datetime.second / 60.0 / 60.0;
     local hour_min = datetime.minute / 60.0;
-    return (datetime.hour + hour_sec + hour_min) / 23.0;
+    return (datetime.hour + hour_sec + hour_min) / 24.0;
 end
 
 local function convert_min(datetime)
@@ -41,7 +41,7 @@ end
 
 local function convert_min_fixed(datetime)
     local min_sec = datetime.second / 60.0;
-    return (datetime.minute + min_sec) / 60.0;
+    return (datetime.minute + min_sec) / 61.0;
 end
 
 local function convert_second(datetime)
@@ -50,7 +50,7 @@ end
 
 local function convert_second_fixed(datetime)
     local sec_millisec = datetime.millisecond / 1000;
-    return (datetime.second + sec_millisec) / 60.0
+    return (datetime.second + sec_millisec) / 61.0
 end
 
 local function convert_weekday(datetime)
